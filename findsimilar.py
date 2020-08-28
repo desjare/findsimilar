@@ -34,14 +34,17 @@ def get_filename_without_ext(filename):
 
 def find_similar(files, min_ratio, verbose):
 	similar_tuple_list = []
+	similar_set = set()
+
 	for f1 in files:
 		for f2 in files:
-			if f1 != f2:
+			if f1 != f2 and not f1+f2 in similar_set:
 				ratio = is_similar(get_filename_without_ext(f1),get_filename_without_ext(f2))
 				if ratio >= min_ratio:
 					if verbose is True:
 						print("Similar %s <-> %s ratio:%f" % (os.path.basename(f1), os.path.basename(f2), ratio))
 
+					similar_set.add(f1+f2)
 					similar_tuple_list.append((ratio, f1, f2))
 
 	return similar_tuple_list
