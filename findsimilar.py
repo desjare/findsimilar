@@ -9,7 +9,7 @@ import difflib
 if sys.version_info[0] < 3:
 	raise Exception("Must be using Python 3")
 
-default_ext = [".mp4", ".mkv", ".m4v", ".avi", ".jpg", ".jpeg", ".mp3", ".flac"]
+default_ext = [".mp4", ".mkv", ".m4v", ".avi", ".jpg", ".jpeg", ".mp3", ".flac", ".aac", ".aiff", ".m4a", ".m4p", ".ogg", ".opus", ".wav", ".mpg", ".mpeg", ".m4p", ".mov", ".wmv"]
 
 def list_files_in_folder(folder, exts, verbose):
 	l = []
