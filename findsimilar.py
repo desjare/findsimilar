@@ -9,7 +9,7 @@ import difflib
 if sys.version_info[0] < 3:
 	raise Exception("Must be using Python 3")
 
-default_ext = [".mp4", ".mkv", ".m4v", ".avi", ".jpg", ".jpeg"]
+default_ext = [".mp4", ".mkv", ".m4v", ".avi", ".jpg", ".jpeg", ".mp3", ".flac"]
 
 def list_files_in_folder(folder, exts, verbose):
 	l = []
@@ -53,7 +53,7 @@ def find_similar(files, min_ratio, compare, verbose):
 			name1, ext1 = os.path.splitext(f1)
 			name2, ext2 = os.path.splitext(f2)
 
-			if f1 != f2 and ext1.lower() == ext2.lower() and not f1+f2 in similar_set:
+			if f1 != f2 and not f1+f2 in similar_set:
 				ratio = is_similar(get_filename_without_ext(f1),get_filename_without_ext(f2))
 				if ratio >= min_ratio:
 					if verbose is True:
@@ -61,7 +61,11 @@ def find_similar(files, min_ratio, compare, verbose):
 
 					same = False
 
-					if compare is True and ratio == 1.0:
+					if compare is True and ratio == 1.0 and ext1.lower() == ext2.lower():
+						
+						if verbose is True:
+							print("Comparing files %s <-> %s" % (os.path.basename(f1), os.path.basename(f2)))
+
 						hash1 = hash_file(f1)
 						hash2 = hash_file(f2)
 
