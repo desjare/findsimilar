@@ -79,7 +79,7 @@ if __name__ == '__main__':
 	parser.add_argument("--folders", nargs="+", action="store", dest="folders", default=["."], help="directoris to scan", required=True)
 	parser.add_argument("--exts", nargs="+", action="store", dest="exts", default=default_ext, help="extensions to scan", required=False)
 	parser.add_argument("--verbose", action="store_true", dest="verbose", default=False, help="verbose", required=False)
-	parser.add_argument("--compare", action="store_true", dest="compare", default=False, help="compare similar files", required=False)
+	parser.add_argument("--compare", action="store_true", dest="compare", default=False, help="compare similar files md5", required=False)
 	parser.add_argument("--minratio", action="store", type=float, dest="min_ratio", default=0.9, help="minimum matching ratio", required=False)
 	args = parser.parse_args()
 	files = []
